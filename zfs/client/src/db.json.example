@@ -1,0 +1,91 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "name": "ZawTuSeng",
+      "email": "zawtuseng@gmail.com",
+      "password": "zawtuseng123",
+      "role": "admin"
+    },
+    {
+      "id": 2,
+      "name": "ericsei",
+      "email": "ericsei@gmail.com",
+      "password": "ericsei123",
+      "role": "admin"
+    },
+    {
+      "id": 3,
+      "name": "waiphyo",
+      "email": "waiphyo@gmail.com",
+      "password": "waiphyo123",
+      "role": "admin"
+    }
+  ],
+  "DailyStockPick": [
+    {
+      "id": 1,
+      "title": "Article 1",
+      "ticker": "apple",
+      "buy": 14.17,
+      "sell": 55.9,
+      "author": "Zaw Tu Seng"
+    },
+    {
+      "id": 2,
+      "title": "Article 2",
+      "ticker": "apple",
+      "buy": 14.17,
+      "sell": 55.9,
+      "author": "Zaw Tu Seng"
+    },
+    {
+      "id": 3,
+      "title": "Article 3",
+      "ticker": "apple",
+      "buy": 14.17,
+      "sell": 55.9,
+      "author": "Zaw Tu Seng"
+    }
+  ],
+  "DailyUpdate": [
+    {
+      "id": 1,
+      "title": "Article 1",
+      "Description": "Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Quisque tempor sollicitudin nisl, ut facilisis nulla ultrices eget.",
+      "author": "Zaw Tu Seng"
+    },
+    {
+      "id": 2,
+      "title": "Article 2",
+      "description": "Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Quisque tempor sollicitudin nisl, ut facilisis nulla ultrices eget.",
+      "author": "Zaw Tu Seng"
+    },
+    {
+      "id": 3,
+      "title": "Article 3",
+      "description": "Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Quisque tempor sollicitudin nisl, ut facilisis nulla ultrices eget.",
+      "author": "Zaw Tu Seng"
+    }
+  ],
+  "articles": [
+    {
+      "id": 1,
+      "title": "Article 1",
+      "description": "Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Quisque tempor sollicitudin nisl, ut facilisis nulla ultrices eget.",
+      "author": "Zaw Tu Seng"
+    },
+    {
+      "id": 2,
+      "title": "Article 2",
+      "description": "Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Quisque tempor sollicitudin nisl, ut facilisis nulla ultrices eget.",
+      "author": "Zaw Tu Seng"
+    },
+    {
+      "id": 3,
+      "title": "Article 3",
+      "description": "Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Quisque tempor sollicitudin nisl, ut facilisis nulla ultrices eget.",
+      "author": "Zaw Tu Seng"
+    }
+  ]
+}
