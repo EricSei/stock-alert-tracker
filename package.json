@@ -31,6 +31,7 @@
     "morgan": "^1.9.1",
     "node-fetch": "^2.6.0",
     "nodemon": "^1.19.3",
+    "path": "^0.12.7",
     "postcss-cli": "^7.1.1",
     "stripe": "^7.4.0",
     "tailwindcss": "^1.4.5",
