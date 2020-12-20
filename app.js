@@ -86,11 +86,11 @@ app.use("/api", stripeRoutes);
 
 // for production use, we serve the static react build folder
 if (process.env.NODE_ENV === "production") {
-  app.use(express.static(path.join(__dirname, "../client/build")));
+  app.use(express.static(path.join(__dirname, "./client/build")));
 
   // all unknown routes should be handed to our react app
   app.get("*", function (req, res) {
-    res.sendFile(path.join(__dirname, "../client/build", "index.html"));
+    res.sendFile(path.join(__dirname, "./client/build", "index.html"));
   });
 }
 
