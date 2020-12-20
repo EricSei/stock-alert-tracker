@@ -1,0 +1,90 @@
+.description_area_wrap {
+  padding: 0;
+  margin: 0;
+}
+.desc_area_wrap {
+  color: #fff;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  text-align: center;
+  margin-bottom: 30px;
+}
+.desc_area_wrap_5 {
+  color: #fff;
+  padding: 20px;
+  text-align: center;
+  border-bottom: none;
+}
+.header_section {
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-radius: 20px;
+  display: inline-block;
+  padding: 20px;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  background: #2d4059;
+}
+.description_aboutarea {
+  color: #000000;
+  font-size: 20px;
+  line-height: 2;
+  text-align: left;
+}
+.description_area_2 {
+  padding: 20px;
+}
+.link_msg {
+  font-size: 24px;
+}
+.link_msg:hover {
+  color: #f0a500;
+  transition: all 0.5s ease-in;
+}
+.coming_soon {
+  color: #000000;
+  text-align: left;
+  font-size: 20px;
+}
+.faq-list_item {
+  color: #000000;
+  text-align: left;
+  padding: 0;
+  font-size: 22px;
+  text-decoration: none;
+}
+.faq_list_items {
+  list-style: none;
+  text-align: 2;
+  // border: 1px solid rgba(255,255,255,0.5);
+  // border-radius: 20px;
+  padding: 15px;
+}
+.faq_list_items i {
+  color: #000000;
+  font-size: 24px;
+  text-decoration: none;
+}
+.faq_list_items i:hover {
+  color: #f0a500;
+  transition: all 0.4s ease-in;
+  cursor: pointer;
+  transform: rotate(90deg);
+}
+.faq_list_items p {
+  padding: 10px;
+  margin-left: 45px;
+  margin-top: 10px;
+  // display: inline-block;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 16px;
+  display: inline-block;
+}
+.list_p_msg {
+  display: none;
+}
+.faq_list_items:hover .list_p_msg {
+  display: block;
+  transition: all 0.5s ease-in;
+}
+.description_area_5 {
+  border-bottom: none;
+}
