@@ -1,2 +1,6 @@
 node_modules
 .env
+.env.development
+.env.production
+client/.env.development
+client/.env.production
