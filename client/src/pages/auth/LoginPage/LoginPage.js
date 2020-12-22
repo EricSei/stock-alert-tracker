@@ -21,6 +21,8 @@ import UserContext from "../../../context/userContext";
 import Wrapper from "../../../components/Layout/Wrapper";
 
 const Login = () => {
+  console.log("react app api", process.env.REACT_APP_API);
+
   const history = useHistory();
   const [values, setValues] = useState({
     email: "",
