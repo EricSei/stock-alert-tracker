@@ -106,7 +106,8 @@ function Subscriptions() {
       .then((cancelSubscriptionResponse) => {
         //unsubscribe here
         setSubscriptionCancelled(true);
-      });
+      })
+      .catch((err) => console.log(err));
   }
 
   return (

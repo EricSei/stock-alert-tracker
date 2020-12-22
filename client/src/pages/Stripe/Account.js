@@ -74,7 +74,7 @@ function Account({ location }) {
             paymentMethodId: accountInformation.paymentMethodId,
           }),
         }
-      );
+      ).catch((err) => console.log(err));
       const responseBody = await response.json();
       const paymentMethod =
         responseBody.card.brand + " •••• " + responseBody.card.last4;

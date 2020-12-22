@@ -272,6 +272,7 @@ const CheckoutForm = ({ productSelected, customer }) => {
           // An error has happened. Display the failure to the user here.
           // We utilize the HTML element we created.
           setSubscribing(false);
+          console.log(error);
           setErrorToDisplay(error.message || error.error.decline_code);
         })
     );
