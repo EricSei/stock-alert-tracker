@@ -8,10 +8,7 @@ const Home = () => {
     <Layout>
       <div className="header_banner_area">
         <div className="banner_header">
-          <h2 className="banner_head_text">
-            Zaw Financial
-            <br /> Solutions
-          </h2>
+          <h2 className="banner_head_text">Zaw Finances</h2>
           <p className="banner_head_text_p">
             Financial Education and Consulting with Experience
           </p>
