@@ -38,7 +38,7 @@ function StripeLogin() {
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
-    return fetch("http://localhost:8000/api/create-customer", {
+    return fetch(`${process.env.REACT_APP_API}/create-customer`, {
       method: "post",
       headers: {
         "Content-Type": "application/json",

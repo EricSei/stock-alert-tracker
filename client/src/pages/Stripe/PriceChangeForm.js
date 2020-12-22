@@ -1,18 +1,18 @@
-import React, { useState, useEffect } from 'react';
-import { withRouter } from 'react-router-dom';
+import React, { useState, useEffect } from "react";
+import { withRouter } from "react-router-dom";
 
 function getFormattedAmount(amount) {
   // Format price details and detect zero decimal currencies
   let amountToFormat = amount;
-  let numberFormat = new Intl.NumberFormat('en-US', {
-    style: 'currency',
-    currency: 'USD',
-    currencyDisplay: 'symbol',
+  let numberFormat = new Intl.NumberFormat("en-US", {
+    style: "currency",
+    currency: "USD",
+    currencyDisplay: "symbol",
   });
   let parts = numberFormat.formatToParts(amountToFormat);
   let zeroDecimalCurrency = true;
   for (let part of parts) {
-    if (part.type === 'decimal') {
+    if (part.type === "decimal") {
       zeroDecimalCurrency = false;
     }
   }
@@ -29,7 +29,7 @@ function getDateStringFromUnixTimestamp(date) {
   let month = nextPaymentAttemptDate.getMonth() + 1;
   let year = nextPaymentAttemptDate.getFullYear();
 
-  return month + '/' + day + '/' + year;
+  return month + "/" + day + "/" + year;
 }
 
 function PriceChangeForm({
@@ -44,17 +44,20 @@ function PriceChangeForm({
 
   useEffect(() => {
     async function fetchData() {
-      const response = await fetch('http://localhost:8000/api/retrieve-upcoming-invoice', {
-        method: 'post',
-        headers: {
-          'Content-type': 'application/json',
-        },
-        body: JSON.stringify({
-          customerId: customerId,
-          subscriptionId: subscriptionId,
-          newPriceId: newProductSelected.toUpperCase(),
-        }),
-      });
+      const response = await fetch(
+        `${process.env.REACT_APP_API}/retrieve-upcoming-invoice`,
+        {
+          method: "post",
+          headers: {
+            "Content-type": "application/json",
+          },
+          body: JSON.stringify({
+            customerId: customerId,
+            subscriptionId: subscriptionId,
+            newPriceId: newProductSelected.toUpperCase(),
+          }),
+        }
+      );
       const responseBody = await response.json();
 
       setInvoicePreview(responseBody);
@@ -63,10 +66,10 @@ function PriceChangeForm({
   }, [customerId, subscriptionId, newProductSelected]);
 
   function confirmPriceChange() {
-    return fetch('http://localhost:8000/api/update-subscription', {
-      method: 'post',
+    return fetch(`${process.env.REACT_APP_API}/update-subscription`, {
+      method: "post",
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
       },
       body: JSON.stringify({
         subscriptionId: subscriptionId,
@@ -106,14 +109,14 @@ function PriceChangeForm({
               You will be charged {console.log(invoicePreview)}
               {(invoicePreview &&
                 getFormattedAmount(invoicePreview.amount_due)) ||
-                ''}{' '}
-              on{' '}
+                ""}{" "}
+              on{" "}
               <span>
                 {(invoicePreview.next_payment_attempt &&
                   getDateStringFromUnixTimestamp(
                     invoicePreview.next_payment_attempt
                   )) ||
-                  ''}
+                  ""}
               </span>
             </p>
             <button

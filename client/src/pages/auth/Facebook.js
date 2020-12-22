@@ -7,7 +7,7 @@ const Facebook = ({ informParent = (f) => f }) => {
     console.log(response);
     axios({
       method: "POST",
-      url: `${process.env.REACT_APP_API}/api/facebook-login`,
+      url: `${process.env.REACT_APP_API}/facebook-login`,
       data: { userID: response.userID, accessToken: response.accessToken },
     })
       .then((response) => {

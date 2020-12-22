@@ -150,7 +150,7 @@ const CheckoutForm = ({ productSelected, customer }) => {
   function retryInvoiceWithNewPaymentMethod({ paymentMethodId, invoiceId }) {
     const priceId = productSelected.name.toUpperCase();
     return (
-      fetch("http://localhost:8000/api/retry-invoice", {
+      fetch(`${process.env.REACT_APP_API}/retry-invoice`, {
         method: "post",
         headers: {
           "Content-type": "application/json",
@@ -225,7 +225,7 @@ const CheckoutForm = ({ productSelected, customer }) => {
   function createSubscription({ paymentMethodId }) {
     const priceId = productSelected.name.toUpperCase();
     return (
-      fetch("http://localhost:8000/api/create-subscription", {
+      fetch(`${process.env.REACT_APP_API}/create-subscription`, {
         method: "post",
         headers: {
           "Content-type": "application/json",
