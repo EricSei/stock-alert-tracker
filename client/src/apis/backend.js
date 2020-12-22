@@ -6,7 +6,7 @@ import { getCookie } from "../context/authHelper";
 const token = getCookie("token");
 console.log(token);
 export default axios.create({
-  baseURL: "http://localhost:8000/api",
+  baseURL: `${process.env.REACT_APP_API}`,
   headers: {
     Authorization: `Bearer ${token}`,
   },
