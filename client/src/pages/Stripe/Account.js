@@ -118,6 +118,17 @@ function Account({ location }) {
     console.log(accountInformation.subscription);
     console.log(selectedProductName);
     handleUnSubscribe(selectedProductName);
+    // axios({
+    //   method: 'POST',
+    //   url: `${process.env.REACT_APP_API}/cancel-subscription`,
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //   },
+    //   data: {subscriptionId: accountInformation.subscription.id}
+    // })
+    // .then()
+    // .then()
+    // .catch()
     fetch(`${process.env.REACT_APP_API}/cancel-subscription`, {
       method: "post",
       headers: {

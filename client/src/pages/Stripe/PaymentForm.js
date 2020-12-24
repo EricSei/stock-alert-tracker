@@ -237,6 +237,7 @@ const CheckoutForm = ({ productSelected, customer }) => {
         }),
       })
         .then((response) => {
+          console.log(response);
           return response.json();
         })
         // If the card is declined, display an error to the user.
