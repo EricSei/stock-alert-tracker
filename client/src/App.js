@@ -7,6 +7,8 @@ import About from "./pages/AboutPage/AboutPage";
 import Service from "./pages/ServicesPage/ServicesPage";
 
 import Articles from "./pages/ArticlePage/ArticlePage";
+import AddArticle from "./pages/ArticlePage/AddArticle";
+
 import DailyUpdate from "./pages/DailyUpdatePage/DailyUpdatePage";
 import DailyStockPick from "./pages/DailyStockPage/DailyStockPage";
 import Login from "./pages/auth/LoginPage/LoginPage";
@@ -24,7 +26,6 @@ import "./App.scss";
 import "./index.scss";
 
 // components
-import ViewArticle from "./components/Article/ViewArticle";
 import Footer from "./pages/Footer/Footer";
 import StripeLogin from "./pages/Stripe/StripeLogin";
 import Prices from "./pages/Stripe/Prices";
@@ -38,6 +39,9 @@ import { AuthProvider } from "./context/authContext";
 import { StripeProvider } from "./context/StripeContext";
 import AddDailyStock from "./pages/DailyStockPage/AddDailyStock";
 import ViewDailyStock from "./pages/DailyStockPage/ViewDailySock";
+import ViewArticle from "./pages/ArticlePage/ViewArticle";
+import RenderArticle from "./pages/ArticlePage/RenderArticles";
+import AdminViewArticles from "./pages/ArticlePage/AdminViewArticles";
 
 const App = () => {
   return (
@@ -68,7 +72,14 @@ const App = () => {
 
           <DailyUpdate exact path="/daily-update" component={DailyUpdate} />
           <Articles exact path="/articles" component={Articles} />
+          <AddArticle exact path="/add/article" component={AddArticle} />
           <ViewArticle exact path="/article/view/:id" component={ViewArticle} />
+          <AdminRoute
+            path="/render/articles"
+            exact
+            component={AdminViewArticles}
+          />
+
           {/* <Articles exact path="/articles/edit/:id" component={Articles} /> */}
 
           {/* Paid Service Routes */}
@@ -97,12 +108,12 @@ const App = () => {
           </Route> */}
 
           <PrivateRoute exact path="/prices" component={Prices} />
-          <Route path="/account">
+          <PrivateRoute path="/account">
             <Account />
-          </Route>
-          <Route path="/subscriptions">
-            <Subscriptions />
-          </Route>
+          </PrivateRoute>
+          <PrivateRoute exact path="/subscriptions" component={Subscriptions}>
+            {/* <Subscriptions /> */}
+          </PrivateRoute>
         </Switch>
       </Router>
     </>

@@ -13,15 +13,6 @@ const articleSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    category: {
-      type: ObjectId,
-      ref: "Category",
-      required: true,
-    },
-    photo: {
-      data: Buffer,
-      contentType: String,
-    },
     author: {
       type: ObjectId,
     },

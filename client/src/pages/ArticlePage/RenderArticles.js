@@ -1,15 +1,8 @@
 import React, { useEffect, useState, useContext } from "react";
-import { Grid } from "semantic-ui-react";
-
-import backend from "../../apis/backend";
-import Layout from "../../components/Layout/Layout";
 import ArticleComponent from "./ArticleComponent";
-import Wrapper from "../../components/Layout/Wrapper";
-import AuthContext from "../../context/authContext";
 import useArticle from "./useArticle";
-import RenderArticle from "./RenderArticles";
 
-const ArticlePage = () => {
+const RenderArticle = () => {
   const [articles, setArticles, getArticles, deleteArticle] = useArticle();
 
   const renderArticles = (articles) => {
@@ -28,15 +21,7 @@ const ArticlePage = () => {
       });
     }
   };
-  return (
-    <Layout>
-      <Wrapper>
-        <Grid divided="vertically">
-          <RenderArticle />
-        </Grid>
-      </Wrapper>
-    </Layout>
-  );
+  return <>{renderArticles(articles)}</>;
 };
 
-export default ArticlePage;
+export default RenderArticle;

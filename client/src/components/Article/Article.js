@@ -9,22 +9,22 @@ const Article = ({ id, title, desc }) => {
   const history = useHistory();
 
   const handleClick = (id) => {
+    getShortDesc(desc);
     history.push(`/article/view/${id}`, { id, title, desc });
   };
+
+  const getShortDesc = (desc) => {};
 
   return (
     <Grid.Row>
       Articles
       <Grid.Column width={10}>
         <Header>{title}</Header>
-        <p> {desc} </p>
+        <p> {desc.slice(0, 1)} </p>
         <Button color="red" content="Read More" onClick={() => handleClick(id)}>
           <Icon name="paper plane" />
           Read More
         </Button>
-      </Grid.Column>
-      <Grid.Column width={4}>
-        <Image src="https://react.semantic-ui.com/images/wireframe/image.png" />
       </Grid.Column>
     </Grid.Row>
   );

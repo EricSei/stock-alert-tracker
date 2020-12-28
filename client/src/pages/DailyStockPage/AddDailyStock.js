@@ -146,6 +146,7 @@ const AddDailyStock = () => {
             author={i.author}
             buy={i.buy}
             sell={i.sell}
+            description={i.description}
           />
         );
       });

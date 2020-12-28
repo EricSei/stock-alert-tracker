@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, Card } from "semantic-ui-react";
+import { Button, Card, Header } from "semantic-ui-react";
 
 const Subscription = ({
   subscriptionId,
@@ -9,10 +9,12 @@ const Subscription = ({
 }) => {
   return (
     <Card>
-      <p>SubscriptionId: {subscriptionId}</p>
-      <p>priceId: {priceId}</p>
-      <p>{desc}</p>
-      <Button onClick={() => handleCancelSubscription(subscriptionId, desc)}>
+      <Header>{desc}</Header>
+      <p>Subscription Number: {subscriptionId}</p>
+      <Button
+        color="red"
+        onClick={() => handleCancelSubscription(subscriptionId, desc)}
+      >
         Cancel
       </Button>
     </Card>

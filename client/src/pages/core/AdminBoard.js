@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 import { Menu, Grid, Segment, Dropdown } from "semantic-ui-react";
 import Layout from "../../components/Layout/Layout";
+import Wrapper from "../../components/Layout/Wrapper";
 
 const AdminBoard = ({ children }) => {
   const [activeItem, setActiveItem] = useState("");
@@ -13,6 +14,7 @@ const AdminBoard = ({ children }) => {
 
   return (
     <Layout>
+      <Wrapper />
       <Grid>
         <Grid.Column width={3}>
           <Menu secondary vertical color={color}>
@@ -39,25 +41,42 @@ const AdminBoard = ({ children }) => {
                 </Menu.Item>
               </Menu.Menu>
             </Menu.Item>
-            <Menu.Item
+            {/* <Menu.Item
               name="dailyupdate"
               active={activeItem === "dailyupdate"}
-            />
+            /> */}
             <Menu.Item
               name="articles"
               active={activeItem === "articles"}
               onClick={handleItemClick}
-            />
+            >
+              Articles
+              <Menu.Menu>
+                <Menu.Item
+                  as={Link}
+                  to="/add/article"
+                  name="add-article"
+                  active={activeItem === "add-article"}
+                  onClick={handleItemClick}
+                >
+                  Add
+                </Menu.Item>
+                <Menu.Item
+                  as={Link}
+                  to="/render/articles"
+                  name="render-articles"
+                  active={activeItem === "render-articles"}
+                  onClick={handleItemClick}
+                >
+                  View
+                </Menu.Item>
+              </Menu.Menu>
+            </Menu.Item>
             <Menu.Item
               as={Link}
               to="/admin"
               name="users"
               active={activeItem === "users"}
-              onClick={handleItemClick}
-            />
-            <Menu.Item
-              name="settings"
-              active={activeItem === "settings"}
               onClick={handleItemClick}
             />
           </Menu>

@@ -5,6 +5,7 @@ import Layout from "../../components/Layout/Layout";
 import DailyStock from "../../components/DailyStock/DailyStock";
 import AuthContext from "../../context/authContext";
 import { useHistory } from "react-router-dom";
+import Wrapper from "../../components/Layout/Wrapper";
 
 const DailyStockPage = () => {
   const [dailyStocks, setDailyStocks] = useState(null);
@@ -65,9 +66,11 @@ const DailyStockPage = () => {
   };
   return (
     <Layout>
-      <Card.Group style={{ color: "red" }}>
-        {renderDailyStock(dailyStocks)}
-      </Card.Group>
+      <Wrapper>
+        <Card.Group style={{ color: "red" }}>
+          {renderDailyStock(dailyStocks)}
+        </Card.Group>
+      </Wrapper>
     </Layout>
   );
 };

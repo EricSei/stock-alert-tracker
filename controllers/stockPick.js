@@ -73,8 +73,8 @@ exports.create = (req, res) => {
 
     //send to phone subscription
     let msgEnglish = `\n Date: ${date} \n Company: ${ticker} \n Buy: ${buy} \n Sell ${sell}`;
-    let msgMyanmar = `\n နေ့စွဲ- ${date} \n ရှယ်ယာသင်္ကေတ - ${ticker}  \n  ဝယ် -${sell} \n ရောင်: - ${buy}. (သို့) ရေရှည်ထားနိုင်မလာ:?`;
-    let message = msgEnglish + "\n" + msgMyanmar;
+    let msgMyanmar = `\n နေ့စွဲ- ${date} \n ရှယ်ယာသင်္ကေတ - ${ticker}  \n  ဝယ် -${buy} \n ရောင်: - ${sell} \n မှတ်ချက် - ${description}`;
+    let message = msgMyanmar;
 
     sendStockPicks(message, numbersInArray); //call Twilio API
     res.json(result);

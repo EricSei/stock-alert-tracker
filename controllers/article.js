@@ -1,91 +1,70 @@
-const StockPick = require("../models/stockPick");
+const Article = require("../models/article");
+
 const { errorHandler } = require("../helpers/dbErrorHandler");
-const { sendSMS } = require("../apis/twilio");
-const formidable = require("formidable"); // another package monitor
-const _ = require("lodash");
-const fs = require("fs");
 
 exports.articleById = (req, res, next, id) => {
-  StockPick.findById(id).exec((err, stock) => {
-    if (err || !stock) {
+  Article.findById(id).exec((err, article) => {
+    if (err || !article) {
       return res.status(400).json({
-        error: "Stock not found.",
+        error: "Article not found.",
       });
     }
-    req.stock = stock;
+    req.article = article;
     next();
   });
 };
 
 exports.read = (req, res) => {
-  return res.json(req.product);
+  return res.json(req.article);
 };
 
 exports.create = (req, res) => {
-  let form = new formidable.IncomingForm();
-  form.keepExtensions = true;
-  form.parse(req, (err, fields, files) => {
+  const article = Article(req.body);
+  article.save((err, data) => {
+    if (err) {
+      res.stat(400).json({
+        err: errorHandler(err),
+      });
+    }
+    res.json({ data });
+  });
+};
+
+exports.update = (req, res) => {
+  const article = Article(req.body);
+  article.save((err, data) => {
+    if (err) {
+      res.stat(400).json({
+        err: errorHandler(err),
+      });
+    }
+    res.json({ data });
+  });
+};
+
+exports.remove = (req, res) => {
+  console.log(req.params.articleId, "is deleted.");
+  Article.deleteOne({ _id: req.params.articleId }, (err, result) => {
     if (err) {
       return res.status(400).json({
-        error: "Image could not be uploaded",
+        error: errorHandler(err),
       });
     }
-    const { name, description, ticker, buy, sell, date, userId } = fields;
-
-    //check all fields
-    if (!name || !description || !ticker || !buy || !sell || !date || !userId) {
-      return res.status(400).json({
-        error: "All fields are required.",
-      });
-    }
-
-    //send to phone subscription
-    let message = `
-    Date: ${date}
-    Company: ${ticker}
-    Buy: ${buy}
-    Sell ${sell}`;
-
-    let msg2 =
-      "\n ရှယ်ယာသင်္ကေတ -UBER  \n  ဝယ် -31.26-30.30 \n ရောင်: -35. (သို့) ရေရှည်ထားနိုင်မလာ:?";
-
-    sendSMS(message);
-
-    let stockPick = new StockPick(fields);
-
-    if (files.photo) {
-      //console.log(files.photo);
-      // 1KB = 1000, 1MB = 1000,000
-      if (files.photo.size > 1000000) {
-        return res.status(400).json({
-          error: "Image size should be less than 1 mb in size.",
-        });
-      }
-
-      product.photo.data = fs.readFileSync(files.photo.path);
-      product.photo.contentType = files.photo.type;
-    }
-    stockPick.save((err, result) => {
-      if (err) {
-        return res.status(400).json({
-          error: errorHandler(err),
-        });
-      }
-      res.json(result);
-    });
+    console.log(result, "is deleted.");
+    res.json(result);
   });
 };
 
 exports.list = (req, res) => {
-  StockPick.find({})
+  Article.find({})
     .sort({ $natural: -1 })
     .limit(5)
-    .exec((err, stocks) => {
+    .exec((err, articles) => {
       if (err) {
         return res.status(400).json({
-          error: "StockPicks Not Found",
+          error: "Articles Not Found",
         });
       }
-      res.send(stocks);
+      res.send(articles);
     });
 };

@@ -6,6 +6,7 @@ import Layout from "../../components/Layout/Layout";
 import AdminBoard from "../core/AdminBoard";
 import DailyStock from "../../components/DailyStock/DailyStock";
 import AuthContext from "../../context/authContext";
+import Wrapper from "../../components/Layout/Wrapper";
 
 const ViewDailyStock = () => {
   const { isAuth } = useContext(AuthContext);

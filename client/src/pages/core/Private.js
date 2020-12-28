@@ -7,6 +7,7 @@ import UserContext from "../../context/userContext";
 import "react-toastify/dist/ReactToastify.min.css";
 import { Header } from "semantic-ui-react";
 import Layout from "../../components/Layout/Layout";
+import Wrapper from "../../components/Layout/Wrapper";
 
 const Private = ({ history }) => {
   const { user, setUser } = useContext(UserContext);
@@ -165,11 +166,13 @@ const Private = ({ history }) => {
 
   return (
     <Layout>
-      <div>
-        {/* <ToastContainer /> */}
-        <Header as="h2">Profile Update</Header>
-        {updateForm()}
-      </div>
+      <Wrapper>
+        <div>
+          {/* <ToastContainer /> */}
+          <Header as="h2">Profile Update</Header>
+          {updateForm()}
+        </div>
+      </Wrapper>
     </Layout>
   );
 };

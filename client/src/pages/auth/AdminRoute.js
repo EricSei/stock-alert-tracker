@@ -3,7 +3,6 @@ import { Route, Redirect } from "react-router-dom";
 import { isAuth } from "./helpers";
 
 const AdminRoute = ({ component: Component, ...rest }) => (
-  
   <Route
     {...rest}
     render={(props) =>

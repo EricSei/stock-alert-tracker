@@ -39,6 +39,8 @@ const DailyStock = ({
         </Header>
         <Header> Buy: {buy} </Header>
         <Header> Sell: {sell} </Header>
+        <Header> Note: {sell} </Header>
+
         {isAuth().role == "admin" ? (
           <Button onClick={handleDelete}>Delete</Button>
         ) : null}

@@ -8,6 +8,7 @@ import StripeContext from "../../context/StripeContext";
 import AuthContext from "../../context/authContext";
 import backend from "../../apis/backend";
 import Subscription from "./Subscription";
+import Wrapper from "../../components/Layout/Wrapper";
 
 //replace accountinfo with customer
 function Subscriptions() {
@@ -112,8 +113,10 @@ function Subscriptions() {
 
   return (
     <Layout>
-      <div>Account</div>
-      <div>{renderSubscribes(subscriptions)}</div>
+      <Wrapper>
+        <h2>Subscriptions</h2>
+        <div>{renderSubscribes(subscriptions)}</div>
+      </Wrapper>
     </Layout>
   );
 }
