@@ -13,6 +13,7 @@ const DailyStock = ({
   ticker,
   buy,
   sell,
+  description,
   date,
   deleteDailyStock,
 }) => {
@@ -34,15 +35,17 @@ const DailyStock = ({
           {title}
         </Label>
         <Header>
-          <Icon name={ticker} />
+          <Icon name="industry" />
           {ticker}
         </Header>
         <Header> Buy: {buy} </Header>
         <Header> Sell: {sell} </Header>
-        <Header> Note: {sell} </Header>
+        <Header> Note: {description} </Header>
 
         {isAuth().role == "admin" ? (
-          <Button onClick={handleDelete}>Delete</Button>
+          <Button color="red" onClick={handleDelete}>
+            Delete
+          </Button>
         ) : null}
       </Item.Content>
     </Card>

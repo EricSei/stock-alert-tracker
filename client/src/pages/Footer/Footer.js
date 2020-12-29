@@ -31,7 +31,8 @@ const Footer = () => {
 
         <div className="copy_right">
           <p className="msg_left">
-            Zaw Finances <span> &copy;</span>
+            Zaw Finances <span> &copy; </span>
+            2021
           </p>
         </div>
       </div>

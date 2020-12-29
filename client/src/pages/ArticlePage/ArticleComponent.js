@@ -23,12 +23,14 @@ const Article = ({ id, title, desc, deleteArticle }) => {
       {/* <Grid.Column width={10}> */}
       <Header>{title}</Header>
       <p> {desc.slice(0, 500) + " ..."} </p>
-      <Button color="red" content="Read More" onClick={() => handleClick(id)}>
-        <Icon name="paper plane" />
+      <Button color="teal" content="Read More" onClick={() => handleClick(id)}>
+        <Icon name="book" />
         Read More
       </Button>
       {isAuth() && isAuth().role == "admin" ? (
-        <Button onClick={handleDelete}>Delete</Button>
+        <Button color="red" inverted onClick={handleDelete}>
+          Delete
+        </Button>
       ) : null}
       {/* </Grid.Column> */}
     </Grid.Row>

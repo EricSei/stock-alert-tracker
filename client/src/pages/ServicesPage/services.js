@@ -7,7 +7,7 @@ export default () => {
       interval: "monthly",
       billed: "monthly",
       title: "Daily Stock Pick",
-      fees: 15.0,
+      fees: 25.0,
       description: "Daily Stocks picked by our professionals",
       priceId: `${process.env.REACT_APP_BASIC}`,
     },

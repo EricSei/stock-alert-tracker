@@ -58,6 +58,7 @@ const DailyStockPage = () => {
             author={i.author}
             buy={i.buy}
             sell={i.sell}
+            description={i.description}
             deleteDailyStock={deleteDailyStock}
           />
         );

@@ -1,16 +1,24 @@
-import React from "react";
+import React, { useContext } from "react";
+import { Button } from "semantic-ui-react";
+import History, { Link } from "react-router-dom";
 import Layout from "../../components/Layout/Layout";
 import Footer from "../Footer/Footer";
 import "./Homepage.scss";
+import AuthContext from "../../context/authContext";
 
 const Home = () => {
+  const user = useContext(AuthContext);
+
+  const handleClick = () => {
+    // history.push("/");
+  };
   return (
     <Layout>
       <div className="header_banner_area">
         <div className="banner_header">
           <h2 className="banner_head_text">Zaw Finances</h2>
           <p className="banner_head_text_p">
-            Financial Education and Consulting with Experience
+            Providing Financial Education and Mentoring Services
           </p>
         </div>
       </div>
@@ -50,9 +58,11 @@ const Home = () => {
 
                     <div className="button_area">
                       <div className="btn_button">
-                        <a className="btn_area" href="#">
-                          အမည်စာရင်း ပေးသွင်းရန်
-                        </a>
+                        {user && user.isAuth() ? (
+                          <Link to="/services">အမည်စာရင်း ပေးသွင်းရန်</Link>
+                        ) : (
+                          <Link to="/signup">အမည်စာရင်း ပေးသွင်းရန်</Link>
+                        )}
                       </div>
                     </div>
                   </div>
@@ -132,9 +142,11 @@ const Home = () => {
               </div>
               <div class="button_area second_btn">
                 <div class="btn_button sec_btn_button">
-                  <a class="btn_area" href="#">
-                    အမည်စာရင်း ပေးသွင်းရန်
-                  </a>
+                  {user && user.isAuth() ? (
+                    <Link to="/services">အမည်စာရင်း ပေးသွင်းရန်</Link>
+                  ) : (
+                    <Link to="/signup">အမည်စာရင်း ပေးသွင်းရန်</Link>
+                  )}
                 </div>
               </div>
             </div>
