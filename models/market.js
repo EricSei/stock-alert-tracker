@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const { ObjectId } = mongoose.Schema;
 
-const articleSchema = new mongoose.Schema(
+const marketSchema = new mongoose.Schema(
   {
     title: {
       type: String,
@@ -20,4 +20,4 @@ const articleSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-module.exports = mongoose.model("Article", articleSchema);
+module.exports = mongoose.model("Market", marketSchema);

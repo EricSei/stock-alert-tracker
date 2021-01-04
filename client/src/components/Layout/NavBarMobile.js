@@ -50,7 +50,7 @@ const NavBarMobile = ({
         </Menu.Item>
         <Menu.Item
           as={NavLink}
-          to={"/daily-update"}
+          to={"/markets"}
           content={"Daily Update"}
           key={"daily-update"}
         >

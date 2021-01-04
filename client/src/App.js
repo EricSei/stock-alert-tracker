@@ -42,6 +42,10 @@ import ViewDailyStock from "./pages/DailyStockPage/ViewDailySock";
 import ViewArticle from "./pages/ArticlePage/ViewArticle";
 import RenderArticle from "./pages/ArticlePage/RenderArticles";
 import AdminViewArticles from "./pages/ArticlePage/AdminViewArticles";
+import Market from "./pages/MarketPage/MarketPage";
+import ViewMarket from "./pages/MarketPage/ViewMarket";
+import AddMarket from "./pages/MarketPage/AddMarket";
+import AdminViewMarkets from "./pages/MarketPage/AdminViewMarkets";
 
 const App = () => {
   return (
@@ -70,7 +74,6 @@ const App = () => {
           <Service exact path="/services" component={Service} />
           {/* <PrivateRoute path="/services" exact component={Service} /> */}
 
-          <DailyUpdate exact path="/daily-update" component={DailyUpdate} />
           <Articles exact path="/articles" component={Articles} />
           <AddArticle exact path="/add/article" component={AddArticle} />
           <ViewArticle exact path="/article/view/:id" component={ViewArticle} />
@@ -81,6 +84,15 @@ const App = () => {
           />
 
           {/* <Articles exact path="/articles/edit/:id" component={Articles} /> */}
+
+          <Market exact path="/markets" component={Market} />
+          <ViewMarket exact path="/market/view/:id" component={ViewMarket} />
+          <AdminRoute exact path="/add/market" component={AddMarket} />
+          <AdminRoute
+            exact
+            path="/render/markets"
+            component={AdminViewMarkets}
+          />
 
           {/* Paid Service Routes */}
           <DailyStockPick

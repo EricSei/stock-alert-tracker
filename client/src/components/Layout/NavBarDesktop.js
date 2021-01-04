@@ -17,7 +17,7 @@ const NavBarDesktop = () => {
       <Menu.Item>
         <Image size="tiny" src={LOGO} />
       </Menu.Item>
-      <Menu.Item as={NavLink} to={"/"} content={"Home"} key={"Home"} />
+      <Menu.Item as={NavLink} to={"/"} content={"Home"} key={"home"} />
       <Menu.Item
         as={NavLink}
         to={"/articles"}
@@ -26,9 +26,9 @@ const NavBarDesktop = () => {
       />
       <Menu.Item
         as={NavLink}
-        to={"/daily-update"}
+        to={"/markets"}
         content={"Market Updates"}
-        key={"daily-update"}
+        key={"markets"}
       />
 
       <Menu.Item

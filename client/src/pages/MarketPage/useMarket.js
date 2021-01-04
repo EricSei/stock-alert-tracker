@@ -3,39 +3,40 @@ import { useEffect, useState, useContext } from "react";
 import backend from "../../apis/backend";
 import Wrapper from "../../components/Layout/Wrapper";
 import AuthContext from "../../context/authContext";
-import ArticleComponent from "./ArticleComponent";
+import MarketComponent from "./MarketComponent";
 
-const useArticle = () => {
-  const [articles, setArticles] = useState(null);
+const useMarket = () => {
+  const [markets, setMarkets] = useState(null);
   const { isAuth } = useContext(AuthContext);
   useEffect(() => {
-    getArticles();
+    getMarkets();
   }, []);
 
-  const getArticles = async () => {
+  const getMarkets = async () => {
     await backend
-      .get("/articles")
+      .get("/markets")
       .then((res) => {
-        console.log(res.data);
-        setArticles(res.data);
+        console.log("markets", res.data);
+        setMarkets(res.data);
       })
       .catch((err) => {
         console.log(err);
       });
   };
 
-  const deleteArticle = async (id) => {
+  const deleteMarket = async (id) => {
     await backend
-      .delete(`/articles/${id}/${isAuth()._id}`)
+      .delete(`/markets/${id}/${isAuth()._id}`)
       .then((res) => {
-        getArticles();
+        // console.log(res.data);
+        getMarkets();
       })
       .catch((err) => {
         console.log(err);
       });
   };
 
-  return [articles, setArticles, getArticles, deleteArticle];
+  return [markets, setMarkets, getMarkets, deleteMarket];
 };
 
-export default useArticle;
+export default useMarket;

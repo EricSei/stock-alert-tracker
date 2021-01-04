@@ -6,10 +6,11 @@ import Wrapper from "../../components/Layout/Wrapper";
 
 const AdminBoard = ({ children }) => {
   const [activeItem, setActiveItem] = useState("");
-  const [color, setColor] = useState("teal");
+  const [color, setColor] = useState("");
   let history = useHistory();
   const handleItemClick = (e, { name }) => {
     setActiveItem(name);
+    setColor("teal");
   };
 
   return (
@@ -17,10 +18,10 @@ const AdminBoard = ({ children }) => {
       <Wrapper />
       <Grid>
         <Grid.Column width={3}>
-          <Menu secondary vertical color={color}>
+          <Menu pointing vertical>
             <Menu.Item>
               Daily Stock
-              <Menu.Menu>
+              <Menu.Menu color={color}>
                 <Menu.Item
                   as={Link}
                   to="/add/dailystock"
@@ -66,6 +67,33 @@ const AdminBoard = ({ children }) => {
                   to="/render/articles"
                   name="render-articles"
                   active={activeItem === "render-articles"}
+                  onClick={handleItemClick}
+                >
+                  View
+                </Menu.Item>
+              </Menu.Menu>
+            </Menu.Item>
+            <Menu.Item
+              name="articles"
+              active={activeItem === "articles"}
+              onClick={handleItemClick}
+            >
+              Market Update
+              <Menu.Menu>
+                <Menu.Item
+                  as={Link}
+                  to="/add/market"
+                  name="add-market"
+                  active={activeItem === "add-market"}
+                  onClick={handleItemClick}
+                >
+                  Add
+                </Menu.Item>
+                <Menu.Item
+                  as={Link}
+                  to="/render/markets"
+                  name="render-markets"
+                  active={activeItem === "render-markets"}
                   onClick={handleItemClick}
                 >
                   View
