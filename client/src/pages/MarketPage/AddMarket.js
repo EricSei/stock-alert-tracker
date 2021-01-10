@@ -84,6 +84,7 @@ const AddMarket = () => {
           onChange={handleChange("description")}
           type="text"
           value={description}
+          style={{ minHeight: 200 }}
         />
       </Form.Field>
       <Button onClick={createMarket}>Submit</Button>

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Button, Form, Container, Header, Checkbox } from "semantic-ui-react";
 import Layout from "../../../components/Layout/Layout";
-import { useHistory } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.min.css";
@@ -84,7 +84,11 @@ const SignUpPage = () => {
         placeholder="password"
       />
       <Form.Field>
-        <Checkbox label="I agree to the Terms and Conditions" />
+        <Checkbox
+          label="I agree to the Terms and Conditions. "
+          defaultChecked={true}
+        />
+        <Link to="/terms">Learn More</Link>
       </Form.Field>
 
       <Button onClick={clickSubmit}>{buttonText}</Button>

@@ -16,7 +16,7 @@ const useArticle = () => {
     await backend
       .get("/articles")
       .then((res) => {
-        console.log(res.data);
+        // console.log(res.data);
         setArticles(res.data);
       })
       .catch((err) => {

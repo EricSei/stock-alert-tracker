@@ -46,12 +46,18 @@ import Market from "./pages/MarketPage/MarketPage";
 import ViewMarket from "./pages/MarketPage/ViewMarket";
 import AddMarket from "./pages/MarketPage/AddMarket";
 import AdminViewMarkets from "./pages/MarketPage/AdminViewMarkets";
+import Terms from "./pages/AboutPage/TermsPage";
 
 const App = () => {
   return (
     <>
       <Router>
         <Switch>
+          {/* Public Information Routes */}
+          <Home exact path="/" component={Home} />
+          <About exact path="/about" component={About} />
+          <Terms exact path="/terms" component={Terms} />
+
           {/* Auth Routes */}
           <Login exact path="/login" component={Login} />
           <Signup exact path="/signup" component={Signup} />
@@ -68,9 +74,6 @@ const App = () => {
           <Route path="/auth/password/forgot" exact component={Forgot} />
           <Route path="/auth/password/reset/:token" exact component={Reset} />
 
-          {/* Public Routes */}
-          <Home exact path="/" component={Home} />
-          <About exact path="/about" component={About} />
           <Service exact path="/services" component={Service} />
           {/* <PrivateRoute path="/services" exact component={Service} /> */}
 
@@ -95,17 +98,17 @@ const App = () => {
           />
 
           {/* Paid Service Routes */}
-          <DailyStockPick
+          <PrivateRoute
             exact
             path="/daily-stock-pick"
             component={DailyStockPick}
           />
-          <ViewDailyStock
+          <PrivateRoute
             exact
             path="/view/dailystock"
             component={ViewDailyStock}
           />
-          <AddDailyStock
+          <PrivateRoute
             exact
             path="/add/dailystock"
             component={AddDailyStock}

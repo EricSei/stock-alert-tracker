@@ -84,7 +84,7 @@ const NavBarMobile = ({
             <Menu.Menu>
               <Menu.Item
                 as={NavLink}
-                to={"/account"}
+                to={"/subscriptions"}
                 name="subscriptions"
                 active={activeItem === "subscriptions"}
                 onClick={handleItemClick}

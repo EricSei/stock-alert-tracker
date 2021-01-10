@@ -26,7 +26,7 @@ const Services = () => {
   useEffect(() => {
     if (isAuth()) {
       console.log("User Exist");
-      console.log(isAuth());
+      // console.log(isAuth().subscribes);
       setSubscribes(isAuth().subscribes);
     }
     // getStripeCustomer(stripeCustomerId);

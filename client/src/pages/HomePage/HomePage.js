@@ -97,7 +97,7 @@ const Home = () => {
 
                   <li className="text-icon__list-item">
                     <i className="fa fa-chart-line" aria-hidden="true"></i>
-                    <h3>Real Time Consulting</h3>
+                    <h3>Real Time Coaching</h3>
                     <p>
                       အချိန်နှင့် တပြေးညီ ကြိုရောင်း ကြိုဝယ်စနစ် (Futures)
                       စျေးကွက်မှာ ဇော်တူးဆိုင်း အရောင်းအဝယ် လုပ်နေတာကို

@@ -85,6 +85,7 @@ const AddArticle = () => {
           onChange={handleChange("description")}
           type="text"
           value={description}
+          style={{ minHeight: 400 }}
         />
       </Form.Field>
 

@@ -19,6 +19,7 @@ exports.userById = (req, res, next, id) => {
         error: "User not found",
       });
     }
+    console.log(user);
     req.profile = user;
     next();
   });
@@ -106,6 +107,9 @@ exports.createSubscribes = (req, res) => {
       case "dailystock":
         user.subscribes.set(0, "dailystock");
         break;
+      case "dailystockannual":
+        user.subscribes.set(0, "dailystock");
+        break;
       case "dailystock-monthly":
         user.subscribes.set(1, "dailystock-monthly");
         break;
@@ -140,6 +144,9 @@ exports.deleteSubscribe = (req, res) => {
 
     switch (unSubscribe) {
       case "dailystock":
+        user.subscribes.set(0, "");
+        break;
+      case "dailystockannual":
         user.subscribes.set(0, "");
         break;
       case "dailystock-monthly":

@@ -1,5 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Grid, Card, Item } from "semantic-ui-react";
+import axios from "axios";
+
 import backend from "../../apis/backend";
 import Layout from "../../components/Layout/Layout";
 import DailyStock from "../../components/DailyStock/DailyStock";
@@ -9,16 +11,22 @@ import Wrapper from "../../components/Layout/Wrapper";
 
 const DailyStockPage = () => {
   const [dailyStocks, setDailyStocks] = useState(null);
-  const { isAuth } = useContext(AuthContext);
+  const { isAuth, getCookie } = useContext(AuthContext);
   const history = useHistory();
+  const token = getCookie("token");
 
   useEffect(() => {
     getDailyStocks();
   }, []);
 
   const getDailyStocks = async () => {
-    await backend
-      .get("/stocks/")
+    axios({
+      method: "GET",
+      url: `${process.env.REACT_APP_API}/stocks/${isAuth()._id}`,
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
       .then((res) => {
         console.log(res.data);
         setDailyStocks(res.data);
@@ -27,10 +35,6 @@ const DailyStockPage = () => {
         console.log(err);
       });
   };
-
-  // const deleteDailyStock = (id) => {
-  //   console.log(id);
-  // };
 
   const deleteDailyStock = async (id) => {
     await backend

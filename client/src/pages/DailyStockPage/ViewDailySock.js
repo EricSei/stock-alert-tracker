@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useContext } from "react";
 import { Header, Form, TextArea, Responsive } from "semantic-ui-react";
+import axios from "axios";
 
 import backend from "../../apis/backend";
 import Layout from "../../components/Layout/Layout";
@@ -9,19 +10,25 @@ import AuthContext from "../../context/authContext";
 import Wrapper from "../../components/Layout/Wrapper";
 
 const ViewDailyStock = () => {
-  const { isAuth } = useContext(AuthContext);
+  const { isAuth, getCookie } = useContext(AuthContext);
 
   const [dailyStocks, setDailyStocks] = useState(null);
+  const token = getCookie("token");
 
   useEffect(() => {
     getDailyStocks();
   }, []);
 
   const getDailyStocks = async () => {
-    await backend
-      .get("/stocks")
+    axios({
+      method: "GET",
+      url: `${process.env.REACT_APP_API}/stocks/${isAuth()._id}`,
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
       .then((res) => {
-        // console.log(res.data);
+        console.log(res.data);
         setDailyStocks(res.data);
       })
       .catch((err) => {

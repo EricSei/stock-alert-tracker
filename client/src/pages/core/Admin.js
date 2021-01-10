@@ -12,7 +12,7 @@ const Admin = ({ history }) => {
     role: "",
     name: "",
     email: "",
-    password: "",
+    password: "123456789000",
     buttonText: "Submit",
   });
 

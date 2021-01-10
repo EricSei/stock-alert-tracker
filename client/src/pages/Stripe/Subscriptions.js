@@ -17,7 +17,6 @@ function Subscriptions() {
 
   const { accountInformation } = useContext(StripeContext);
   const { customer, setCustomer } = useContext(StripeContext);
-  console.log("customer", customer);
 
   let [customerPaymentMethod, setCustomerPaymentmethod] = useState(null);
   let [subscriptionCancelled, setSubscriptionCancelled] = useState(false);
@@ -25,13 +24,14 @@ function Subscriptions() {
     accountInformation["priceId"]
   );
   let [selectedProductName] = useState(accountInformation["priceId"]);
-  let [subscriptions, setSubscriptions] = useState({});
+  let [subscriptions, setSubscriptions] = useState(null);
 
   useEffect(() => {
     //call and set subscriptions
     getStripeCustomer(isAuth().stripeCustomerId);
   }, [subscriptionCancelled]);
 
+  //get customer and setSusbscriptions
   const getStripeCustomer = (customerId) => {
     // evt.preventDefault();
     backend
@@ -57,6 +57,7 @@ function Subscriptions() {
           <Subscription
             subscriptionId={subscription.id}
             priceId={subscription.plan["id"]}
+            selectedProductName={selectedProductName}
             desc={subscription.plan["metadata"]["description"]}
             handleCancelSubscription={cancelSubscription}
           />
@@ -115,7 +116,11 @@ function Subscriptions() {
     <Layout>
       <Wrapper>
         <h2>Subscriptions</h2>
-        <div>{renderSubscribes(subscriptions)}</div>
+        {subscriptions && subscriptions.length > 0 ? (
+          renderSubscribes(subscriptions)
+        ) : (
+          <div>You have no subscriptions. Subscribe today. </div>
+        )}
       </Wrapper>
     </Layout>
   );

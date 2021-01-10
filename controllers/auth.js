@@ -59,33 +59,34 @@ exports.accountActivation = (req, res) => {
   const { token } = req.body;
 
   if (token) {
-    jwt.verify(token, process.env.JWT_ACCOUNT_ACTIVATION, function (
-      err,
-      decoded
-    ) {
-      if (err) {
-        console.log("JWT VERIFY IN ACCOUNT ACTIVATION ERROR", err);
-        return res.status(401).json({
-          error: "Expired link. Signup again",
-        });
-      }
-
-      const { name, email, password } = jwt.decode(token);
-
-      const user = new User({ name, email, password });
-
-      user.save((err, user) => {
+    jwt.verify(
+      token,
+      process.env.JWT_ACCOUNT_ACTIVATION,
+      function (err, decoded) {
         if (err) {
-          console.log("SAVE USER IN ACCOUNT ACTIVATION ERROR", err);
+          console.log("JWT VERIFY IN ACCOUNT ACTIVATION ERROR", err);
           return res.status(401).json({
-            error: "Error saving user in database. Try signup again",
+            error: "Expired link. Signup again",
           });
         }
-        return res.json({
-          message: "Signup success. Please signin.",
+
+        const { name, email, password } = jwt.decode(token);
+
+        const user = new User({ name, email, password });
+
+        user.save((err, user) => {
+          if (err) {
+            console.log("SAVE USER IN ACCOUNT ACTIVATION ERROR", err);
+            return res.status(401).json({
+              error: "Error saving user in database. Try signup again",
+            });
+          }
+          return res.json({
+            message: "Signup success. Please signin.",
+          });
         });
-      });
-    });
+      }
+    );
   } else {
     return res.json({
       message: "Something went wrong. Try again.",
@@ -232,42 +233,43 @@ exports.resetPassword = (req, res) => {
   const { resetPasswordLink, newPassword } = req.body;
 
   if (resetPasswordLink) {
-    jwt.verify(resetPasswordLink, process.env.JWT_RESET_PASSWORD, function (
-      err,
-      decoded
-    ) {
-      if (err) {
-        return res.status(400).json({
-          error: "Expired link. Try again",
-        });
-      }
-
-      User.findOne({ resetPasswordLink }, (err, user) => {
-        if (err || !user) {
+    jwt.verify(
+      resetPasswordLink,
+      process.env.JWT_RESET_PASSWORD,
+      function (err, decoded) {
+        if (err) {
           return res.status(400).json({
-            error: "Something went wrong. Try later",
+            error: "Expired link. Try again",
           });
         }
 
-        const updatedFields = {
-          password: newPassword,
-          resetPasswordLink: "",
-        };
-
-        user = _.extend(user, updatedFields);
-
-        user.save((err, result) => {
-          if (err) {
+        User.findOne({ resetPasswordLink }, (err, user) => {
+          if (err || !user) {
             return res.status(400).json({
-              error: "Error resetting user password",
+              error: "Something went wrong. Try later",
             });
           }
-          res.json({
-            message: `Great! Now you can login with your new password`,
+
+          const updatedFields = {
+            password: newPassword,
+            resetPasswordLink: "",
+          };
+
+          user = _.extend(user, updatedFields);
+
+          user.save((err, result) => {
+            if (err) {
+              return res.status(400).json({
+                error: "Error resetting user password",
+              });
+            }
+            res.json({
+              message: `Great! Now you can login with your new password`,
+            });
           });
         });
-      });
-    });
+      }
+    );
   }
 };
 
@@ -441,13 +443,20 @@ exports.isSubscribed = (req, res, next) => {
         error: "User not found",
       });
     }
-
-    if (user.subscribes[0] !== "dailystock") {
+    // console.log(user);
+    if (user.role == "subscriber" && user.subscribes[0] !== "dailystock") {
       return res.status(400).json({
         error: "Subscriber resource. Access denied.",
       });
     }
     req.profile = user;
     next();
+    // if (user.subscribes[0] !== "dailystock") {
+    //   return res.status(400).json({
+    //     error: "Subscriber resource. Access denied.",
+    //   });
+    // }
+    // req.profile = user;
+    // next();
   });
 };

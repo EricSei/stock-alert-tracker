@@ -212,7 +212,7 @@ const CheckoutForm = ({ productSelected, customer }) => {
     }
     handleSubscribe(subscribe);
     setAccountInformation(result);
-    history.push("/account");
+    history.push("/daily-stock-pick");
     // Change your UI to show a success message to your customer.
     // onSubscriptionSampleDemoComplete(result);
     // Call your backend to grant access to your service based on
@@ -340,8 +340,10 @@ const CheckoutForm = ({ productSelected, customer }) => {
     >
       <div className="w-full inline-block border p-4 rounded-md">
         <div className="font-bold text-xl mb-2">
-          Enter your card details. <br />
-          Your subscription will start now.
+          Enter your card details. Your subscription will start now.
+          <br />
+          We never store customers' credit card information. It is secured by
+          Stripe Payment.
         </div>
         <p className="text-gray-700 text-base">
           → Total due now <span>{productSelected.price}</span>

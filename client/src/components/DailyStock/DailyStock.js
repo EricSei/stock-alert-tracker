@@ -35,7 +35,7 @@ const DailyStock = ({
           {title}
         </Label>
         <Header>
-          <Icon name="industry" />
+          <Icon name="industry" color="teal" />
           {ticker}
         </Header>
         <Header> Buy: {buy} </Header>

@@ -16,7 +16,7 @@ const useMarket = () => {
     await backend
       .get("/markets")
       .then((res) => {
-        console.log("markets", res.data);
+        // console.log("markets", res.data);
         setMarkets(res.data);
       })
       .catch((err) => {

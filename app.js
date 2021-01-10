@@ -13,8 +13,8 @@ require("dotenv").config({ path: "./.env" });
 if (
   !process.env.STRIPE_SECRET_KEY ||
   !process.env.STRIPE_PUBLISHABLE_KEY ||
-  !process.env.dailystock ||
-  !process.env.PREMIUM
+  !process.env.DAILYSTOCK ||
+  !process.env.DAILYSTOCKANNUAL
 ) {
   console.log(
     "The .env file is not configured. Follow the instructions in the readme to configure the .env file. https://github.com/stripe-samples/subscription-use-cases"
@@ -28,13 +28,13 @@ if (
     ? ""
     : console.log("Add STRIPE_PUBLISHABLE_KEY to your .env file.");
 
-  process.env.dailystock
+  process.env.DAILYSTOCK
     ? ""
     : console.log(
         "Add BASIC priceID to your .env file. See repo readme for setup instructions."
       );
 
-  process.env.PREMIUM
+  process.env.DAILYSTOCKANNUAL
     ? ""
     : console.log(
         "Add PREMIUM priceID to your .env file. See repo readme for setup instructions."

@@ -19,7 +19,7 @@ const Private = ({ history }) => {
     name: "",
     phoneNumber: "+1",
     email: "",
-    password: "",
+    password: "123456789000",
     buttonText: "Submit",
   });
 

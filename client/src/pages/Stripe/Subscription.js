@@ -5,15 +5,21 @@ const Subscription = ({
   subscriptionId,
   priceId,
   desc,
+  selectedProductName,
   handleCancelSubscription,
 }) => {
   return (
     <Card>
       <Header>{desc}</Header>
-      <p>Subscription Number: {subscriptionId}</p>
+      <Header>Product Name:</Header>
+      <p>{selectedProductName}</p>
+      <Header>Subscription Number:</Header>
+      <p> {subscriptionId}</p>
       <Button
         color="red"
-        onClick={() => handleCancelSubscription(subscriptionId, desc)}
+        onClick={() =>
+          handleCancelSubscription(subscriptionId, selectedProductName)
+        }
       >
         Cancel
       </Button>

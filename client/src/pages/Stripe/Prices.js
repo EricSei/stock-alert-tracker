@@ -7,6 +7,7 @@ import backend from "../../apis/backend";
 import Layout from "../../components/Layout/Layout";
 import AuthContext from "../../context/authContext";
 import StripeContext from "../../context/StripeContext";
+import Wrapper from "../../components/Layout/Wrapper";
 
 // const products = [
 //   {
@@ -85,6 +86,7 @@ const Prices = () => {
 
   return (
     <Layout>
+      <Wrapper />
       {customer ? (
         <PaymentForm productSelected={productSelected} customer={customer} />
       ) : null}
