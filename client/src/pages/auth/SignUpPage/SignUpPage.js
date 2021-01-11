@@ -88,7 +88,7 @@ const SignUpPage = () => {
           label="I agree to the Terms and Conditions. "
           defaultChecked={true}
         />
-        <Link to="/terms">Learn More</Link>
+        <Link to="/terms"> Read More</Link>
       </Form.Field>
 
       <Button onClick={clickSubmit}>{buttonText}</Button>
