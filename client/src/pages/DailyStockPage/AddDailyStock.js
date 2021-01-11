@@ -44,7 +44,7 @@ const AddDailyStock = () => {
 
   const createDailyStock = (e) => {
     e.preventDefault();
-    console.log("payload", payload);
+    // console.log("payload", payload);
     let { name, description, ticker, buy, sell, date } = payload;
 
     axios({
