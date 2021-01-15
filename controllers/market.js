@@ -22,7 +22,7 @@ exports.create = (req, res) => {
   const market = Market(req.body);
   market.save((err, data) => {
     if (err) {
-      res.stat(400).json({
+      res.status(400).json({
         err: errorHandler(err),
       });
     }
@@ -34,7 +34,7 @@ exports.update = (req, res) => {
   const market = Market(req.body);
   market.save((err, data) => {
     if (err) {
-      res.stat(400).json({
+      res.status(400).json({
         err: errorHandler(err),
       });
     }

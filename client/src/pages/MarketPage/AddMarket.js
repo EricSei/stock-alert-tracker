@@ -6,7 +6,8 @@ import Layout from "../../components/Layout/Layout";
 import AdminBoard from "../core/AdminBoard";
 import AuthContext from "../../context/authContext";
 import useMarket from "./useMarket";
-
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.min.css";
 import { todayDate } from "../../utilities/date";
 
 const AddMarket = () => {
@@ -19,28 +20,19 @@ const AddMarket = () => {
   const [payload, setPayload] = useState({
     title: "",
     description: "",
+    buttonText: "Submit",
   });
-  const { title, description } = payload;
+  const { title, description, buttonText } = payload;
 
   useEffect(() => {
     getMarkets();
   }, []);
 
-  // const getMarkets = async () => {
-  //   await backend
-  //     .get("/articles")
-  //     .then((res) => {
-  //       setArticles(res.data);
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //     });
-  // };
-
   const createMarket = (e) => {
     e.preventDefault();
-    console.log("payload", payload);
+
     let { title, description } = payload;
+    setPayload({ ...payload, buttonText: "Submitting..." });
 
     axios({
       method: "POST",
@@ -53,11 +45,19 @@ const AddMarket = () => {
         description: description,
       },
     })
-      .then((res) => {
-        console.log(res.data);
+      .then((response) => {
+        setPayload({
+          ...payload,
+          title: "",
+          description: "",
+          buttonText: "Submited",
+        });
+        toast.success("New Market Created Successfully.");
         getMarkets();
       })
-      .catch((e) => console.log(e));
+      .catch((error) => {
+        toast.error(error);
+      });
   };
 
   const handleChange = (name) => (event) => {
@@ -80,14 +80,14 @@ const AddMarket = () => {
       <Form.Field>
         <label> Content</label>
         <TextArea
-          placeholder="google ..."
+          placeholder="Google ..."
           onChange={handleChange("description")}
           type="text"
           value={description}
           style={{ minHeight: 200 }}
         />
       </Form.Field>
-      <Button onClick={createMarket}>Submit</Button>
+      <Button onClick={createMarket}>{buttonText}</Button>
     </Form>
   );
 
@@ -95,12 +95,14 @@ const AddMarket = () => {
     <Layout>
       <Responsive minWidth={Responsive.onlyTablet.minWidth}>
         <AdminBoard>
+          <ToastContainer />
           <Header as="h2">{"Add An Market"}</Header>
           {form()}
         </AdminBoard>
       </Responsive>
       <Responsive {...Responsive.onlyMobile}>
         <Fragment>
+          <ToastContainer />
           <Header as="h2">{"Add An Market"}</Header>
           {form()}
         </Fragment>
