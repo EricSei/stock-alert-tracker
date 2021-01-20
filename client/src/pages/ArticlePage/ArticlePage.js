@@ -1,33 +1,10 @@
-import React, { useEffect, useState, useContext } from "react";
+import React from "react";
 import { Grid } from "semantic-ui-react";
-
-import backend from "../../apis/backend";
 import Layout from "../../components/Layout/Layout";
-import ArticleComponent from "./ArticleComponent";
 import Wrapper from "../../components/Layout/Wrapper";
-import AuthContext from "../../context/authContext";
-import useArticle from "./useArticle";
 import RenderArticle from "./RenderArticles";
 
 const ArticlePage = () => {
-  const [articles, setArticles, getArticles, deleteArticle] = useArticle();
-
-  const renderArticles = (articles) => {
-    if (articles != null && articles.length > 0) {
-      return articles.map((i) => {
-        return (
-          <ArticleComponent
-            id={i._id}
-            key={i.title}
-            title={i.title}
-            desc={i.description}
-            author={i.author}
-            deleteArticle={deleteArticle}
-          />
-        );
-      });
-    }
-  };
   return (
     <Layout>
       <Wrapper>

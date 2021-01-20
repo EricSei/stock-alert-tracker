@@ -1,19 +1,24 @@
 import React, { Fragment, useContext, useEffect, useState } from "react";
 import { Header, Form, Button, TextArea, Responsive } from "semantic-ui-react";
 import axios from "axios";
-import backend from "../../apis/backend";
 import Layout from "../../components/Layout/Layout";
 import AdminBoard from "../core/AdminBoard";
-import DailyStock from "../../components/DailyStock/DailyStock";
+import DailyStock from "./DailyStock";
 import AuthContext from "../../context/authContext";
+import { ToastContainer, toast } from "react-toastify";
 
 import { todayDate } from "../../utilities/date";
+import useStocks from "./useStocks";
 
 const AddDailyStock = () => {
   const { isAuth, getCookie } = useContext(AuthContext);
+  const [
+    dailyStocks,
+    setDailyStocks,
+    getDailyStocks,
+    deleteDailyStock,
+  ] = useStocks();
   let myDate = todayDate();
-  // console.log(isAuth());
-  const [dailyStocks, setDailyStocks] = useState(null);
   const token = getCookie("token");
 
   const [payload, setPayload] = useState({
@@ -22,31 +27,20 @@ const AddDailyStock = () => {
     ticker: "",
     buy: "",
     sell: "",
+    buttonText: "Submit",
     date: `${myDate}`,
   });
-  const { name, description, ticker, buy, sell, date } = payload;
+  const { name, description, ticker, buy, sell, buttonText, date } = payload;
 
   useEffect(() => {
     getDailyStocks();
   }, []);
 
-  const getDailyStocks = async () => {
-    await backend
-      .get("/stocks")
-      .then((res) => {
-        // console.log(res.data);
-        setDailyStocks(res.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
-
   const createDailyStock = (e) => {
     e.preventDefault();
     // console.log("payload", payload);
     let { name, description, ticker, buy, sell, date } = payload;
-
+    setPayload({ ...payload, buttonText: "Submitting..." });
     axios({
       method: "POST",
       url: `${process.env.REACT_APP_API}/stock/create/${isAuth()._id}`,
@@ -64,14 +58,23 @@ const AddDailyStock = () => {
     })
       .then((res) => {
         console.log(res.data);
+        setPayload({
+          ...payload,
+          name: "",
+          description: "",
+          ticker: "",
+          buy: "",
+          sell: "",
+          buttonText: "Submited",
+        });
+        toast.success("New Stock Pick Created Successfully.");
         getDailyStocks();
       })
-      .catch((e) => console.log(e));
+      .catch((e) => {
+        toast.error("Error Occurred.");
+        console.log(e);
+      });
   };
-
-  const updateDailyStock = async () => {};
-
-  const deleteDailyStock = async () => {};
 
   const handleChange = (name) => (event) => {
     console.log(event.target.value);
@@ -122,7 +125,6 @@ const AddDailyStock = () => {
       </Form.Field>
       <Form.Field>
         <label>Note</label>
-
         <TextArea
           placeholder="description..."
           onChange={handleChange("description")}
@@ -133,35 +135,18 @@ const AddDailyStock = () => {
     </Form>
   );
 
-  const renderDailyStock = (dailyStocks) => {
-    if (dailyStocks != null && dailyStocks.length > 0) {
-      return dailyStocks.map((i) => {
-        return (
-          <DailyStock
-            id={i.id}
-            date={i.date}
-            key={i.title}
-            title={i.title}
-            ticker={i.ticker}
-            author={i.author}
-            buy={i.buy}
-            sell={i.sell}
-            description={i.description}
-          />
-        );
-      });
-    }
-  };
   return (
     <Layout>
       <Responsive minWidth={Responsive.onlyTablet.minWidth}>
         <AdminBoard>
+          <ToastContainer />
           <Header as="h2">{"Add Daily Stock"}</Header>
           {form()}
         </AdminBoard>
       </Responsive>
       <Responsive {...Responsive.onlyMobile}>
         <Fragment>
+          <ToastContainer />
           <Header as="h2">{"Add Daily Stock"}</Header>
           {form()}
         </Fragment>

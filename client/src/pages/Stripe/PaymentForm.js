@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, useContext } from "react";
 import { loadStripe } from "@stripe/stripe-js";
 import {
   CardElement,
@@ -6,9 +6,6 @@ import {
   useStripe,
   useElements,
 } from "@stripe/react-stripe-js";
-import { Redirect } from "react-router-dom";
-import Layout from "../../components/Layout/Layout";
-import backend from "../../apis/backend";
 import AuthContext from "../../context/authContext";
 import StripeContext from "../../context/StripeContext";
 

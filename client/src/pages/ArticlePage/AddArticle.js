@@ -1,12 +1,11 @@
 import React, { Fragment, useContext, useEffect, useState } from "react";
 import { Header, Form, Button, TextArea, Responsive } from "semantic-ui-react";
 import axios from "axios";
-import backend from "../../apis/backend";
 import Layout from "../../components/Layout/Layout";
 import AdminBoard from "../core/AdminBoard";
-import DailyStock from "../../components/DailyStock/DailyStock";
 import AuthContext from "../../context/authContext";
 import useArticle from "./useArticle";
+import { ToastContainer, toast } from "react-toastify";
 
 import { todayDate } from "../../utilities/date";
 
@@ -20,28 +19,22 @@ const AddArticle = () => {
   const [payload, setPayload] = useState({
     title: "",
     description: "",
+    buttonText: "Submit",
   });
-  const { title, description } = payload;
+  const { title, description, buttonText } = payload;
 
   useEffect(() => {
     getArticles();
   }, []);
 
-  // const getArticles = async () => {
-  //   await backend
-  //     .get("/articles")
-  //     .then((res) => {
-  //       setArticles(res.data);
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //     });
-  // };
-
   const createArticle = (e) => {
     e.preventDefault();
     console.log("payload", payload);
     let { title, description } = payload;
+    setPayload({
+      ...payload,
+      buttonText: "Submited",
+    });
 
     axios({
       method: "POST",
@@ -55,10 +48,17 @@ const AddArticle = () => {
       },
     })
       .then((res) => {
-        console.log(res.data);
-        getArticles();
+        setPayload({
+          ...payload,
+          title: "",
+          description: "",
+        });
+        toast.success("A New Article Created Successfully.");
       })
-      .catch((e) => console.log(e));
+      .catch((e) => {
+        toast.error("Error Occured.");
+        getArticles();
+      });
   };
 
   const handleChange = (name) => (event) => {
@@ -97,11 +97,14 @@ const AddArticle = () => {
     <Layout>
       <Responsive minWidth={Responsive.onlyTablet.minWidth}>
         <AdminBoard>
+          <ToastContainer />
           <Header as="h2">{"Add An Article"}</Header>
           {form()}
         </AdminBoard>
       </Responsive>
       <Responsive {...Responsive.onlyMobile}>
+        <ToastContainer />
+
         <Fragment>
           <Header as="h2">{"Add An Article"}</Header>
           {form()}

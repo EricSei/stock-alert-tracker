@@ -19,11 +19,13 @@ exports.read = (req, res) => {
 };
 
 exports.create = (req, res) => {
+  console.log(req.body);
   const article = Article(req.body);
   article.save((err, data) => {
     if (err) {
-      res.stat(400).json({
-        err: errorHandler(err),
+      res.status(400).json({
+        // err: errorHandler(err),
+        error: "error in article occured",
       });
     }
     res.json({ data });
@@ -34,7 +36,7 @@ exports.update = (req, res) => {
   const article = Article(req.body);
   article.save((err, data) => {
     if (err) {
-      res.stat(400).json({
+      res.status(400).json({
         err: errorHandler(err),
       });
     }
@@ -47,6 +49,7 @@ exports.remove = (req, res) => {
   Article.deleteOne({ _id: req.params.articleId }, (err, result) => {
     if (err) {
       return res.status(400).json({
+        // error: errorHandler(err),
         error: errorHandler(err),
       });
     }

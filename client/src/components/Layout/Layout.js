@@ -1,4 +1,3 @@
-import _ from "lodash";
 import React, { useState } from "react";
 import { withRouter } from "react-router-dom";
 import { Container, Responsive } from "semantic-ui-react";
@@ -8,10 +7,10 @@ import NavBarMobile from "./NavBarMobile";
 //use authContext
 import { isAuth } from "../../pages/auth/helpers";
 
-const NavBarChildren = ({ children }) => (
-  // style={{ marginTop: "15em" }} add some styles
-  <Container>{children}</Container>
-);
+// const NavBarChildren = ({ children }) => (
+//   // style={{ marginTop: "15em" }} add some styles
+//   <Container>{children}</Container>
+// );
 
 const CustomMenu = ({ children, leftItems, rightItems }) => {
   const [visible, setVisible] = useState(false);

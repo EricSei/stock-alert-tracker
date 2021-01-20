@@ -7,7 +7,6 @@ import AdminBoard from "../core/AdminBoard";
 import AuthContext from "../../context/authContext";
 import useMarket from "./useMarket";
 import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.min.css";
 import { todayDate } from "../../utilities/date";
 
 const AddMarket = () => {

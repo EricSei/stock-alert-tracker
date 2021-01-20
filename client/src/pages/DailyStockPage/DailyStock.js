@@ -3,13 +3,12 @@ import { useHistory } from "react-router-dom";
 import { Header, Label, Icon, Button } from "semantic-ui-react";
 import { Card, Item } from "semantic-ui-react";
 import AuthContext from "../../context/authContext";
-import "./DailyStock.scss";
 
 //get user //if admin display button
 
 const DailyStock = ({
   id,
-  title,
+  name,
   ticker,
   buy,
   sell,
@@ -17,12 +16,11 @@ const DailyStock = ({
   date,
   deleteDailyStock,
 }) => {
-  //
+  const { isAuth } = useContext(AuthContext);
   const handleDelete = () => {
     deleteDailyStock(id);
     // console.log(id);
   };
-  const { isAuth } = useContext(AuthContext);
   return (
     <Card color="red" className="card-customized">
       <Item.Content>
@@ -32,8 +30,11 @@ const DailyStock = ({
             className="calendar-times"
           />
           {date}
-          {title}
         </Label>
+        <Header>
+          Company:
+          {name}
+        </Header>
         <Header>
           <Icon name="industry" color="teal" />
           {ticker}
