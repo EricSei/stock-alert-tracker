@@ -1,6 +1,6 @@
 import _ from "lodash";
 import React, { Fragment, useContext } from "react";
-import { NavLink, withRouter } from "react-router-dom";
+import { NavLink, withRouter, Link } from "react-router-dom";
 import { Image, Menu, Sidebar, Responsive } from "semantic-ui-react";
 import LOGO from "../../assets/zfs-logo.jpg";
 
@@ -15,7 +15,7 @@ const NavBarDesktop = () => {
   return (
     <Menu fixed="top" color="teal" sticky inverted>
       <Menu.Item>
-        <Image size="tiny" src={LOGO} />
+        <Image size="tiny" src={LOGO} as={Link} to={"/"} />
       </Menu.Item>
       <Menu.Item as={NavLink} to={"/"} content={"Home"} key={"home"} />
       <Menu.Item

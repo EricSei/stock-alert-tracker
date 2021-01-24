@@ -26,7 +26,7 @@ import "./App.scss";
 import "./index.scss";
 
 // components
-import Footer from "./pages/Footer/Footer";
+
 import StripeLogin from "./pages/Stripe/StripeLogin";
 import Prices from "./pages/Stripe/Prices";
 import Account from "./pages/Stripe/Account";

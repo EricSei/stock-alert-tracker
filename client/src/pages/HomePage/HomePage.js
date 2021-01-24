@@ -1,7 +1,8 @@
 import React, { useContext } from "react";
-import History, { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import Layout from "../../components/Layout/Layout";
-import Footer from "../Footer/Footer";
+import Footer from "../../components/Layout/Footer/Footer";
+
 import {
   Button,
   Container,
@@ -20,6 +21,7 @@ import "./Homepage.scss";
 import AuthContext from "../../context/authContext";
 
 import DESK_URL from "../../assets/desk.png";
+import STOCKPICKS_URL from "../../assets/stockpicks.png";
 
 const Home = () => {
   const user = useContext(AuthContext);
@@ -38,7 +40,7 @@ const Home = () => {
       <Segment style={{ padding: "8em 0em" }} vertical>
         <Grid container stackable verticalAlign="middle">
           <Grid.Row>
-            <Grid.Column width={8}>
+            <Grid.Column width={6}>
               <Header as="h3" style={{ fontSize: "2em" }}>
                 Zaw Financial Solutions (ZFS)
               </Header>
@@ -62,18 +64,24 @@ const Home = () => {
                 နှစ်ကျော် အတွေအကြုံ ရရှိထားကြသူများ ဖြစ်ကြပါသည်
               </p>
             </Grid.Column>
-            <Grid.Column floated="right" width={6}>
-              <Image bordered rounded size="large" src={DESK_URL} />
+            <Grid.Column floated="right" width={8}>
+              <Image bordered rounded size="huge" src={DESK_URL} />
             </Grid.Column>
           </Grid.Row>
           <Grid.Row>
             <Grid.Column textAlign="center">
               {user && user.isAuth() ? (
-                <Button size="huge" color="teal" as={Link} to="/services">
+                <Button
+                  size="huge"
+                  color="red"
+                  inverted
+                  as={Link}
+                  to="/services"
+                >
                   အမည်စာရင်း ပေးသွင်းရန်
                 </Button>
               ) : (
-                <Button size="huge" color="teal" as={Link} to="/signup">
+                <Button size="huge" color="red" inverted as={Link} to="/signup">
                   အမည်စာရင်း ပေးသွင်းရန်
                 </Button>
               )}
@@ -134,19 +142,26 @@ const Home = () => {
           </Grid.Row>
         </Grid>
       </Segment>
-
       <Segment style={{ padding: "8em 0em" }} vertical>
         <Container text>
+          <Image
+            bordered
+            rounded
+            size="huge"
+            bordered
+            rounded
+            src={STOCKPICKS_URL}
+          />
           <Header as="h3" style={{ fontSize: "2em" }}>
-            အပတ်စဥ်ပုံမှန် အပိုဝင်ငွေရှာချင်ရင် ယ‌နေ့ပင် အမည်စာရင်း ပေးလိုက်ပါ။
+            Zaw Financial Solutions(ZFS)ဖြင့် အပတ်စဥ်ပုံမှန်
+            အပိုဝင်ငွေရှာချင်ရင် ယ‌နေ့ပင် အမည်စာရင်း ပေးလိုက်ပါ။
           </Header>
-
           {user && user.isAuth() ? (
-            <Button size="huge" color="teal" as={Link} to="/services">
+            <Button size="huge" color="red" inverted as={Link} to="/services">
               အမည်စာရင်း ပေးသွင်းရန်
             </Button>
           ) : (
-            <Button size="huge" color="teal" as={Link} to="/signup">
+            <Button size="huge" color="red" inverted as={Link} to="/signup">
               အမည်စာရင်း ပေးသွင်းရန်
             </Button>
           )}
