@@ -1,7 +1,6 @@
 import React, { Fragment, useContext, useEffect, useState } from "react";
 import { Header, Form, Button, TextArea, Responsive } from "semantic-ui-react";
 import axios from "axios";
-import backend from "../../apis/backend";
 import Layout from "../../components/Layout/Layout";
 import AdminBoard from "../core/AdminBoard";
 import AuthContext from "../../context/authContext";
@@ -11,7 +10,8 @@ import { todayDate } from "../../utilities/date";
 
 const AddMarket = () => {
   const { isAuth, getCookie } = useContext(AuthContext);
-  const [markets, setMarkets, getMarkets, deleteMarket] = useMarket();
+  // const [markets, setMarkets, getMarkets, deleteMarket] = useMarket();
+  const getMarkets = useMarket()[2];
 
   let myDate = todayDate();
   const token = getCookie("token");
