@@ -60,8 +60,7 @@ exports.create = (req, res) => {
   });
 
   let { name, description, ticker, buy, sell, date } = req.body;
-  buy = parseInt(buy);
-  sell = parseInt(sell);
+
   let stockPick = new StockPick({ name, description, ticker, buy, sell, date });
 
   stockPick.save((err, result) => {
@@ -72,11 +71,12 @@ exports.create = (req, res) => {
     }
 
     //send to phone subscription
-    let msgEnglish = `\n Date: ${date} \n Company: ${ticker} \n Buy: ${buy} \n Sell ${sell}`;
-    let msgMyanmar = `\n နေ့စွဲ- ${date} \n ရှယ်ယာသင်္ကေတ - ${ticker}  \n  ဝယ် -${buy} \n ရောင်: - ${sell} \n မှတ်ချက် - ${description}`;
+    let msgEnglish = `\n Date: ${date} \n Company: ${name} \n Ticker: ${ticker} \n Buy: ${buy} \n Sell ${sell} \n Note - ${description}`;
+    let msgMyanmar = `\n နေ့စွဲ- ${date} \n ကုမ္ပဏီ - ${name} \n ရှယ်ယာသင်္ကေတ - ${ticker}  \n  ဝယ် -${buy} \n ရောင်: - ${sell} \n မှတ်ချက် - ${description}`;
     let message = msgMyanmar;
 
-    sendStockPicks(message, numbersInArray); //call Twilio API
+    //call Twilio API
+    sendStockPicks(message, numbersInArray);
     res.json(result);
   });
 };

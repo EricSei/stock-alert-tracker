@@ -1,7 +1,7 @@
 import React from "react";
 import GoogleLogin from "react-google-login";
 import axios from "axios";
-const Google = ({ informParent = (f) => f }) => {
+const Google = ({ informParent = (f) => f, label }) => {
   const responseGoogle = (response) => {
     axios({
       method: "POST",
@@ -29,7 +29,7 @@ const Google = ({ informParent = (f) => f }) => {
             disabled={renderProps.disabled}
             className="btn btn-danger btn-lg btn-block"
           >
-            <i className="fab fa-google pr-2"></i> Login with Google
+            <i className="fab fa-google pr-2"></i> {label}
           </button>
         )}
         cookiePolicy={"single_host_origin"}

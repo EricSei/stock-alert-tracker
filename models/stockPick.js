@@ -18,11 +18,11 @@ const stockPickSchema = new mongoose.Schema(
       type: String,
     },
     buy: {
-      type: Number,
+      type: String,
       default: 0,
     },
     sell: {
-      type: Number,
+      type: String,
       default: 0,
     },
     created: {

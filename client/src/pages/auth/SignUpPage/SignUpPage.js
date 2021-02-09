@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { Button, Form, Container, Header, Checkbox } from "semantic-ui-react";
 import Layout from "../../../components/Layout/Layout";
+import Footer from "../../../components/Layout/Footer/Footer";
+
 import { Link, useHistory } from "react-router-dom";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
@@ -97,19 +99,22 @@ const SignUpPage = () => {
 
   return (
     <Layout>
-      <Wrapper>
-        <Container style={{ width: "50%" }}>
-          <ToastContainer />
-          <Header as="h2" textAlign="center">
-            Accout | Register
-          </Header>
-          {signupForm()}
-          <br style={{ margin: "2em" }} />
-
-          <Google informParent={informParent} />
-          <Facebook informParent={informParent} />
-        </Container>
-      </Wrapper>
+      <Wrapper />
+      <Container style={{ width: "50%" }}>
+        <ToastContainer />
+        {/* <Facebook informParent={informParent} /> */}
+        <Header as="h2" textAlign="center">
+          Accout | Register
+          <Google
+            informParent={informParent}
+            label={"Easy Sign Up with Google"}
+          />
+        </Header>
+        {signupForm()}
+        <br style={{ margin: "2em" }} />
+      </Container>
+      <Wrapper />
+      <Footer />
     </Layout>
   );
 };

@@ -19,6 +19,7 @@ import {
 } from "../../auth/helpers";
 import UserContext from "../../../context/userContext";
 import Wrapper from "../../../components/Layout/Wrapper";
+import Footer from "../../../components/Layout/Footer/Footer";
 
 const Login = () => {
   console.log("react app api", process.env.REACT_APP_API);
@@ -107,26 +108,27 @@ const Login = () => {
 
   return (
     <Layout>
-      <Wrapper>
-        <Container style={{ width: "50%" }}>
-          <ToastContainer />
-          {isAuth() ? <Redirect to="/" /> : null}
-          <Header textAlign="center" as="h2">
-            Account | Sign In
-          </Header>
-          {loginForm()}
-          <br />
-          <Link
-            to="/auth/password/forgot"
-            className="btn btn-sm btn-outline-danger"
-          >
-            Forgot Password
-          </Link>
-          <br />
-          <Google informParent={informParent} />
-          <Facebook informParent={informParent} />
-        </Container>
-      </Wrapper>
+      <Wrapper />
+      <Container style={{ width: "50%" }}>
+        <ToastContainer />
+        {isAuth() ? <Redirect to="/" /> : null}
+        <Header textAlign="center" as="h2">
+          Account | Sign In
+        </Header>
+        <Google informParent={informParent} label={"Log In with Google"} />
+        {/* <Facebook informParent={informParent} /> */}
+        {loginForm()}
+        <br />
+        <Link
+          to="/auth/password/forgot"
+          className="btn btn-sm btn-outline-danger"
+        >
+          Forgot Password
+        </Link>
+        <br />
+      </Container>
+      <Wrapper />
+      <Footer />
     </Layout>
   );
 };
